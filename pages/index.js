@@ -76,9 +76,21 @@ export default function Home() {
       {/* التذييل (Footer) والأيقونات */}
       <footer className="relative z-10 w-full pb-10 mt-10 flex flex-col items-center">
         <div className="flex gap-10">
-          <SocialLink href="#" icon={<FaInstagram />} label="Instagram" />
-          <SocialLink href="#" icon={<FaTiktok />} label="TikTok" />
-          <SocialLink href="#" icon={<FaFacebookF />} label="Facebook" />
+          <SocialLink
+            href="https://www.instagram.com/nu_egy"
+            icon={<FaInstagram />}
+            label="Instagram"
+          />
+          <SocialLink
+            href="https://www.tiktok.com/@nu_egy?_r=1&_t=zs-91xldvzfjyr"
+            icon={<FaTiktok />}
+            label="TikTok"
+          />
+          <SocialLink
+            href="https://www.facebook.com/share/1AKoECiLK5/?mibextid=wwXIfr"
+            icon={<FaFacebookF />}
+            label="Facebook"
+          />
         </div>
 
         <motion.p
@@ -97,12 +109,13 @@ export default function Home() {
   );
 }
 
-function SocialLink({ href, icon, label }) {
+function SocialLink({ href, icon, label, target }) {
   return (
     <a
       href={href}
       className="text-[#3e2a1b] text-2xl hover:text-[#b98d50] transform hover:scale-125 transition-all duration-300"
       aria-label={label}
+      target="_blank"
     >
       {icon}
     </a>
