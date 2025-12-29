@@ -13,6 +13,13 @@ function Contact() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     if (loading) return;
+
+    // يمكنك إضافة شرط هنا إذا كنت تريد على الأقل أن تكون الرسالة موجودة
+    if (!message.trim()) {
+      alert("يرجى كتابة رسالتك أولاً");
+      return;
+    }
+
     setLoading(true);
     const data = { name, phone, message };
 
@@ -31,12 +38,9 @@ function Contact() {
 
   return (
     <div className="min-h-screen relative flex flex-col items-center justify-start px-6 py-12 font-[Cairo] overflow-hidden">
-      {/* الخلفية الموحدة */}
       <div className="absolute inset-0 z-0 bg-main-gradient" />
 
-      {/* المحتوى */}
       <div className="relative z-10 w-full max-w-md">
-        {/* زر العودة واللوجو */}
         <div className="flex justify-between items-center mb-12">
           <button
             onClick={() => router.back()}
@@ -60,43 +64,51 @@ function Contact() {
             يسعدنا سماع رأيك
           </h2>
           <p className="text-[#3e2a1b]/60">
-            ملاحظاتك تساعدنا على تقديم تجربة أفضل في NU
+            ملاحظاتك تساعدنا على تقديم تجربة أفضل
           </p>
         </motion.div>
 
-        {/* الفورم بتصميم عصري */}
         <form onSubmit={handleSubmit} className="space-y-4">
+          {/* حقل الاسم - اختياري */}
           <div className="space-y-1">
+            <label className="text-xs mr-2 text-[#3e2a1b]/40 italic">
+              (اختياري)
+            </label>
             <input
               type="text"
               value={name}
               onChange={(e) => setName(e.target.value)}
               placeholder="الاسم"
               className="w-full p-4 rounded-2xl bg-[#fcfaf7] border border-[#3e2a1b]/10 text-[#3e2a1b] shadow-sm focus:ring-2 focus:ring-[#b98d50] focus:outline-none transition-all placeholder:text-[#3e2a1b]/40"
-              required
+              // تم حذف required
             />
           </div>
 
+          {/* حقل الموبايل - اختياري */}
           <div className="space-y-1">
+            <label className="text-xs mr-2 text-[#3e2a1b]/40 italic">
+              (اختياري)
+            </label>
             <input
               type="tel"
               value={phone}
               onChange={(e) => setPhone(e.target.value.replace(/\D/g, ""))}
               placeholder="رقم الموبايل"
               className="w-full p-4 rounded-2xl bg-[#fcfaf7] border border-[#3e2a1b]/10 text-[#3e2a1b] shadow-sm focus:ring-2 focus:ring-[#b98d50] focus:outline-none transition-all placeholder:text-[#3e2a1b]/40"
-              required
               dir="rtl"
               maxLength={11}
-              pattern="[0-9]{11}"
+              // تم حذف required و pattern لسهولة الإرسال
             />
           </div>
 
-          <div className="space-y-1">
+          {/* حقل الرسالة - إجباري منطقياً */}
+          <div className="space-y-1 pt-2">
             <textarea
               value={message}
               onChange={(e) => setMessage(e.target.value)}
               placeholder="اكتب رسالتك هنا.. نحن نهتم بكل التفاصيل"
               className="w-full h-40 p-4 rounded-2xl bg-[#fcfaf7] border border-[#3e2a1b]/10 text-[#3e2a1b] shadow-sm focus:ring-2 focus:ring-[#b98d50] focus:outline-none transition-all placeholder:text-[#3e2a1b]/40 resize-none"
+              required
             />
           </div>
 
@@ -140,7 +152,6 @@ function Contact() {
         </form>
       </div>
 
-      {/* لمسات جمالية خفيفة */}
       <div className="absolute top-[-5%] right-[-10%] w-64 h-64 bg-[#d9b782]/10 blur-[80px] rounded-full pointer-events-none" />
     </div>
   );

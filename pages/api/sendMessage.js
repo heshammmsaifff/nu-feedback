@@ -3,7 +3,7 @@ export default async function handler(req, res) {
     const { name, phone, message } = req.body;
     const BOT_TOKEN = process.env.TELEGRAM_BOT_TOKEN;
 
-    const chatIds = ["6187187718"]; // Allowed to see messages in bot
+    const chatIds = ["6187187718", "6960214970"]; // Allowed to see messages in bot
 
     const text = `📩 رسالة جديدة:\n\n\n الاسم: ${name}\n\n رقم الموبايل: ${phone}\n\n الرسالة:\n${message}`;
 
